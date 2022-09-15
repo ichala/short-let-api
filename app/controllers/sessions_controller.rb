@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
       token = issue_token(user)
       render json: { user: UserSerializer.new(user), jwt: token }
     else
-      render json: { error: 'Incorrect username or password.' }
+      render json: { error: 'Incorrect email or password.' }
     end
   end
 
