@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_15_093122) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_15_121340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "halls", force: :cascade do |t|
+    t.string "name"
+    t.integer "capacity"
+    t.decimal "cost"
+    t.string "image"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "created_by_id", null: false
+    t.index ["created_by_id"], name: "index_halls_on_created_by_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
@@ -24,4 +36,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_093122) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "halls", "users", column: "created_by_id"
 end
