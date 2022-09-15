@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
     end
 
     def token
-        request.headers["Authorization"]
+        request.headers["Authorization"].split(' ').last
     end
 
     def user_id

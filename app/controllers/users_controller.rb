@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
     def create
+       if User.find_by_email(user_params[:email])
+        render json: {error: 'Email Exist , try a diffrent one'}, status: :not_acceptable
+       else
       user = User.new(user_params)
       if user.save
         token = issue_token(user)
@@ -12,10 +15,11 @@ class UsersController < ApplicationController
         end
       end
     end
-
+    end
+    
     private
     
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password_digest)
+      params.permit(:first_name, :last_name, :email, :password)
     end
   end
