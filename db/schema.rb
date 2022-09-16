@@ -27,12 +27,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_150331) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.integer "recipient_id"
-    t.integer "admin_id"
+    t.bigint "admin_id"
+    t.bigint "recipient_id"
     t.text "text"
-    t.integer "reserve_id"
+    t.bigint "reserve_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id"], name: "index_notifications_on_admin_id"
+    t.index ["recipient_id"], name: "index_notifications_on_recipient_id"
+    t.index ["reserve_id"], name: "index_notifications_on_reserve_id"
   end
 
   create_table "reservations", force: :cascade do |t|
@@ -57,6 +60,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_15_150331) do
   end
 
   add_foreign_key "halls", "users", column: "created_by_id"
+  add_foreign_key "notifications", "reservations", column: "reserve_id"
+  add_foreign_key "notifications", "users", column: "admin_id"
+  add_foreign_key "notifications", "users", column: "recipient_id"
   add_foreign_key "reservations", "halls"
   add_foreign_key "reservations", "users"
 end
