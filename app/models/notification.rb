@@ -3,5 +3,5 @@ class Notification < ApplicationRecord
   belongs_to :recipient, class_name: 'User'
   belongs_to :admin, class_name: 'User'
 
-  validates :description, presence: true
+  validates :text, presence: true
 end
