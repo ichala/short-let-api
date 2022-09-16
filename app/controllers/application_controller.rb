@@ -28,4 +28,8 @@ class ApplicationController < ActionController::API
   def logged_in?
     !!current_user
   end
+
+  def admin?
+    logged_in? && current_user.role == 'admin'
+  end
 end
