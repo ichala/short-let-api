@@ -4,5 +4,5 @@ class Reservation < ApplicationRecord
   has_many :notifications, dependent: :delete_all
 
   validates :reserve_date, presence: true
-  validates :status, presence: true, length: { max: 20 }
+  validates :status, presence: true, length: { maximum: 20 }
 end
