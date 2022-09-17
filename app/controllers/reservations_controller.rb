@@ -24,7 +24,36 @@ class ReservationsController < ApplicationController
              end
     end
 
-  
+    private
+    #If Admin Approve Update reservation status
+    def accept_reservation(reservation)
+        
+            reservation.status = 'Confirmed'
+            if reservation.save
+                create_notification(reservation)
+               render json: reservation, each_serializer: ReservationSerializer
+            else
+               render json: { error: 'Bad Request' }, status: :not_acceptable
+            end
+         
+    end
+    #If Admin Refuse Update reservation status
+    def refuse_reservation(reservation)
+        if action_params[:decision] == 'Refuse'
+            reservation.status = 'Refused'
+            if reservation.save
+                create_notification(reservation)
+               render json: reservation, each_serializer: ReservationSerializer
+            else
+               render json: { error: 'Bad Request' }, status: :not_acceptable
+            end
+           end
+    end
+    # After every decision Add Notification to database & Send Email
+    def create_notification(reservation)
+      notification= current_user.notifier.create(recipient_id:reservation.user_id,admin_id:current_user.id,text:action_params[:text],reserve_id:reservation.id)
+       #Send Email Later
+    end
 
     def action_params
         params.permit(:reservation_id, :decision, :text)
