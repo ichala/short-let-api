@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Hall, type: :model do
   describe 'Hall model' do
     @user = User.create(first_name: 'Test', last_name: 'Test', email: 'test@user.com', password: 'lakaka12')
-    subject { Hall.new(name: 'Hall1', capacity: 200, cost: 100, image: "https://testimage", description: "First Hall", created_by_id: @user,) }
+    subject { Hall.new(name: 'Hall1', capacity: 200, cost: 100, image: 'https://testimage', description: 'First Hall', created_by_id: @user) }
     before { subject.save }
 
     it 'should check if the name is not blank' do
