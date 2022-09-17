@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   #Admin Routes 
    #Pending Reservations Routes
-    get "/admin/requests/pending", to: "reservations#get_pending_reservation_admin"
+    get "/admin/requests/pending", to: "reservations#pending_reservation_admin"
     post "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
 end

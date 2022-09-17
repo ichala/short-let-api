@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   # Get All Reservations With Status Pending
-  def get_pending_reservation_admin
+  def pending_reservation_admin
     if admin?
       pending_reservations = Reservation.all.where(status: 'Pending')
       render json: pending_reservations, each_serializer: ReservationSerializer
@@ -41,21 +41,19 @@ class ReservationsController < ApplicationController
 
   # If Admin Refuse Update reservation status
   def refuse_reservation(reservation)
-    if action_params[:decision] == 'Refuse'
-      reservation.status = 'Refused'
-      if reservation.save
-        create_notification(reservation)
-        render json: reservation, each_serializer: ReservationSerializer
-      else
-        render json: { error: 'Bad Request' }, status: :not_acceptable
-      end
+    reservation.status = 'Refused'
+    if reservation.save
+      create_notification(reservation)
+      render json: reservation, each_serializer: ReservationSerializer
+    else
+      render json: { error: 'Bad Request' }, status: :not_acceptable
     end
   end
 
   # After every decision Add Notification to database & Send Email
   def create_notification(reservation)
-    notification = current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
-                                                text: action_params[:text], reserve_id: reservation.id)
+    current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
+                                 text: action_params[:text], reserve_id: reservation.id)
     # Send Email Later
   end
 
