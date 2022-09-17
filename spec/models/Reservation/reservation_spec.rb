@@ -10,4 +10,9 @@ RSpec.describe Reservation, type: :model do
     subject.reserve_date = nil
     expect(subject).to_not be_valid
   end
+
+  it 'reservation status should be present' do
+    subject.status = nil
+    expect(subject).to_not be_valid
+  end
 end
