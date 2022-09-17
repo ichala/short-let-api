@@ -20,4 +20,9 @@ RSpec.describe Reservation, type: :model do
     subject.status = 'a' * 21
     expect(subject).to_not be_valid
   end
+
+  it 'Reservation should belongs to a user' do
+    subject.user_id = nil
+    expect(subject).to_not be_valid
+  end
 end
