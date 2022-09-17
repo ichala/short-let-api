@@ -25,4 +25,9 @@ RSpec.describe Reservation, type: :model do
     subject.user_id = nil
     expect(subject).to_not be_valid
   end
+
+  it 'Reservation should belongs to a hall' do
+    subject.hall_id = nil
+    expect(subject).to_not be_valid
+  end
 end
