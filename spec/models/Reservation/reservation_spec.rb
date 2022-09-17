@@ -15,4 +15,9 @@ RSpec.describe Reservation, type: :model do
     subject.status = nil
     expect(subject).to_not be_valid
   end
+
+  it 'reservation status should not be more than 20 characters' do
+    subject.status = 'a' * 21
+    expect(subject).to_not be_valid
+  end
 end
