@@ -17,9 +17,9 @@ class ReservationsController < ApplicationController
 
       case action_params[:decision]
       when 'Confirm'
-        accept_reservation(reservation)
+        update_reservation(reservation, 'Confirmed')
       when 'Refuse'
-        refuse_reservation(reservation)
+        update_reservation(reservation, 'Refused')
       end
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
@@ -29,19 +29,8 @@ class ReservationsController < ApplicationController
   private
 
   # If Admin Approve Update reservation status
-  def accept_reservation(reservation)
-    reservation.status = 'Confirmed'
-    if reservation.save
-      create_notification(reservation)
-      render json: reservation, each_serializer: ReservationSerializer
-    else
-      render json: { error: 'Bad Request' }, status: :not_acceptable
-    end
-  end
-
-  # If Admin Refuse Update reservation status
-  def refuse_reservation(reservation)
-    reservation.status = 'Refused'
+  def update_reservation(reservation, decision)
+    reservation.status = decision
     if reservation.save
       create_notification(reservation)
       render json: reservation, each_serializer: ReservationSerializer
