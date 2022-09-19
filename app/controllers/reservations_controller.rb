@@ -35,6 +35,15 @@ class ReservationsController < ApplicationController
     end
   end
 
+  # create my reservations for a user
+  def my_reservations
+    return render json: { error: 'You need to loginto access this page' }, status: :unauthorized unless logged_in?
+    @reservations = Reservation.find(user_id: 25)
+    raise ActiveRecord::RecordNotFound unless @reservations
+
+      render json: @reservations, each_serializer: ReservationSerializer, status: :ok
+  end
+
   private
 
   # If Admin Approve Update reservation status

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
    #Pending Reservations Routes
     get "/admin/requests/pending", to: "reservations#pending_reservation_admin"
     patch "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
+    #my reservations Routes
+    get "/user/reservations", to: "reservations#my_reservations"
 end
