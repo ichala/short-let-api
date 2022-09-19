@@ -44,6 +44,25 @@ class ReservationsController < ApplicationController
       render json: @reservations, each_serializer: ReservationSerializer, status: :ok
   end
 
+    #delete reservation
+    def delete_reservation
+      if logged_in?
+        @reservation = current_user.reservations.find(params[:reservation_id])
+      raise ActiveRecord::RecordNotFound unless @reservation
+      if @reservation.status == "Pending"
+        if @reservation.destroy
+        render json: { message: 'Reservation Deleted' }, status: :ok
+        else
+          render json: { error: 'Reservation can\'t be destroyed' }, status: :not_implemented
+        end
+      else
+        render json: { error: 'You can not delete this reservation' }, status: :unauthorized
+      end
+    else
+      render json: { error: 'You need to loginto access this page' }, status: :unauthorized
+    end
+    end
+
   private
 
   # If Admin Approve Update reservation status
