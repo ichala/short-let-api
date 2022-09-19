@@ -2,13 +2,7 @@ class ReservationsController < ApplicationController
   # Create a reservation for a hall
   def create
     if logged_in?
-      @reservation = current_user.reservations.new(hall_id: reservation_params[:hall_id],
-                                                   reserve_date: reservation_params[:reserve_date], status: 'Pending')
-      if @reservation.save
-        render json: { message: 'reservation created', status: :created }
-      else
-        render json: { message: 'reservation not created' }, status: :unprocessable_entity
-      end
+      check_date
     else
       render json: { error: 'Please log in to make a reservation' }, status: :unauthorized
     end
@@ -59,6 +53,27 @@ class ReservationsController < ApplicationController
     current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
                                  text: action_params[:text], reserve_id: reservation.id)
     # Send Email Later
+  end
+
+  def check_date
+    # check if hall is available for the date
+    @check = Reservation.where(hall_id: reservation_params[:hall_id],
+                               reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
+    if @check.blank?
+      create_reservation
+    else
+      render json: { message: 'Hall Unavailable on this date' }, status: :unprocessable_entity
+    end
+  end
+
+  def create_reservation
+    @reservation = current_user.reservations.new(hall_id: reservation_params[:hall_id],
+                                                 reserve_date: reservation_params[:reserve_date], status: 'Pending')
+    if @reservation.save
+      render json: { message: 'reservation created', status: :created }
+    else
+      render json: { message: 'reservation not created' }, status: :unprocessable_entity
+    end
   end
 
   def reservation_params
