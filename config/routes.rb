@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   post "/reservation", to: "reservations#create"
 
   #User Routes
-  #my reservations Routes
-  get "/user/reservations", to: "reservations#my_reservations"
-  #delete reservation
-  delete "/user/reservations", to: "reservations#delete_reservation"
+   #my reservations Routes
+    get "/user/reservations", to: "reservations#my_reservations"
+   #delete reservation
+    delete "/user/reservations", to: "reservations#delete_reservation"
 
   #Admin Routes 
    #Pending Reservations Routes
