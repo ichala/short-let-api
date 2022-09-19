@@ -6,9 +6,9 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
   get "/authorized", to: "sessions#show"
-  post "/reservation", to: "reservations#create"
 
   #User Routes
+    post "user/reservation", to: "reservations#create"
    #my reservations Routes
     get "/user/reservations", to: "reservations#my_reservations"
    #delete reservation
