@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
   get "/authorized", to: "sessions#show"
+  post "/reservation", to: "reservations#create"
 
   #Admin Routes 
    #Pending Reservations Routes
     get "/admin/requests/pending", to: "reservations#pending_reservation_admin"
-    post "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
+    patch "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
 end
