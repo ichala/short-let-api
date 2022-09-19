@@ -8,12 +8,14 @@ Rails.application.routes.draw do
   get "/authorized", to: "sessions#show"
   post "/reservation", to: "reservations#create"
 
+  #User Routes
+  #my reservations Routes
+  get "/user/reservations", to: "reservations#my_reservations"
+  #delete reservation
+  delete "/user/reservations", to: "reservations#delete_reservation"
+
   #Admin Routes 
    #Pending Reservations Routes
     get "/admin/requests/pending", to: "reservations#pending_reservation_admin"
     patch "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
-    #my reservations Routes
-    get "/user/reservations", to: "reservations#my_reservations"
-    #delete reservation
-    delete "/user/reservations", to: "reservations#delete_reservation"
 end
