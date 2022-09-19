@@ -50,11 +50,7 @@ class ReservationsController < ApplicationController
         @reservation = current_user.reservations.find(params[:reservation_id])
       raise ActiveRecord::RecordNotFound unless @reservation
       if @reservation.status == "Pending"
-        if @reservation.destroy
-        render json: { message: 'Reservation Deleted' }, status: :ok
-        else
-          render json: { error: 'Reservation can\'t be destroyed' }, status: :not_implemented
-        end
+        destroy_reservation(@reservation)
       else
         render json: { error: 'You can not delete this reservation' }, status: :unauthorized
       end
@@ -101,6 +97,14 @@ class ReservationsController < ApplicationController
       render json: { message: 'reservation created', status: :created }
     else
       render json: { message: 'reservation not created' }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy_reservation(reservation)
+    if reservation.destroy
+      render json: { message: 'reservation deleted' }, status: :ok
+    else
+      render json: { error: 'Reservation can\'t be destroyed' }, status: :not_implemented
     end
   end
 
