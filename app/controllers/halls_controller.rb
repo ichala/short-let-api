@@ -23,7 +23,7 @@ class HallsController < ApplicationController
   # Create New Hall
   def add_hall
     if admin?
-      hall = current_user.hall.new(create_params)
+      hall = current_user.hall.new(halls_params)
       if hall.save
         render json: { created: hall }
       else
@@ -37,14 +37,10 @@ class HallsController < ApplicationController
   # Update existant Hall by id
   def update_hall
     if admin?
-      hall = Hall.find(update_params[:hall_id])
+      hall = Hall.find(params.permit(:hall_id)[:hall_id])
       raise ActiveRecord::RecordNotFound unless hall
 
-      hall.name = update_params[:name]
-      hall.description = update_params[:description]
-      hall.cost = update_params[:cost]
-      hall.capacity = update_params[:capacity]
-      hall.image = update_params[:image]
+      hall.update(halls_params)
       if hall.save
         render json: { updated: hall }
       else
@@ -75,11 +71,7 @@ class HallsController < ApplicationController
     params.permit(:hall_id)
   end
 
-  def update_params
-    params.permit(:hall_id, :name, :capacity, :cost, :description, :image)
-  end
-
-  def create_params
+  def halls_params
     params.permit(:name, :capacity, :cost, :description, :image)
   end
 end
