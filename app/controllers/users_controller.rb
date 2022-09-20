@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   # Admin gets all users
-  def get_users
+  def all_users
     if admin?
       @users = User.all
       render json: @users, each_serializer: UserSerializer
@@ -54,8 +54,6 @@ class UsersController < ApplicationController
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
   end
-
-  
 
   private
 
