@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def all_users
     if admin?
-      @users = User.all
+      @users = User.where.not(id: current_user.id)
       render json: @users, each_serializer: UserSerializer
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
