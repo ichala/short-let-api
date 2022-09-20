@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # Admin gets all users
+  # Admin fetches all users
   def all_users
     if admin?
       @users = User.all
