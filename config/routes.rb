@@ -6,7 +6,13 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
   post "/login", to: "sessions#create"
   get "/authorized", to: "sessions#show"
-  post "/reservation", to: "reservations#create"
+
+  #User Routes
+    post "user/reservation", to: "reservations#create"
+   #my reservations Routes
+    get "/user/reservations", to: "reservations#my_reservations"
+   #delete reservation
+    delete "/user/reservations", to: "reservations#delete_reservation"
 
   #Admin Routes 
    #Pending Reservations Routes
@@ -18,4 +24,10 @@ Rails.application.routes.draw do
     patch "/admin/halls", to: "halls#update_hall"
     delete "/admin/halls/:id", to: "halls#delete_hall"
     post "/admin/halls", to: "halls#add_hall"
+    #Dashboard Stats Route
+    get "admin/stats", to: "dashboard_stats#stats"
+   #Admin users CRUD Routes
+    get "/admin/users", to: "users#get_users"
+    patch "/admin/user/update", to: "users#update_user_info"
+    delete "/admin/user/destroy", to: "users#destroy"
 end
