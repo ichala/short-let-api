@@ -27,7 +27,12 @@ class UsersController < ApplicationController
   # Admin can update user info i.e (first_name, last_name, email, password and role)
   def update_user_info
     if admin?
-      check_email
+      @user = User.find(update_params[:id])
+      if @user.update(update_params)
+      render json: { message: 'user updated', status: :updated }
+    else
+      render json: { message: 'Email already exists' }, status: :unprocessable_entity
+    end
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
@@ -50,24 +55,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  def update_user
-    @user = User.find(update_params[:id])
-    if @user.update(update_params)
-      render json: { message: 'user updated', status: :updated }
-    else
-      render json: { message: 'reservation not created' }, status: :unprocessable_entity
-    end
-  end
-
-  def check_email
-    @check = User.where(email: update_params[:email])
-    if @check.blank?
-      update_user
-    else
-      render json: { message: 'Email Already exists' }, status: :unprocessable_entity
-    end
-  end
 
   def user_params
     params.permit(:first_name, :last_name, :email, :password)
