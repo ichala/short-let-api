@@ -39,6 +39,22 @@ class UsersController < ApplicationController
     end
   end
 
+  # Admin can delete users except itself
+  def destroy
+    if admin?
+      @user = User.find(update_params[:id])
+      if @user == current_user
+        render json: { message: 'Can not delete current user' }, status: :unprocessable_entity
+      elsif @user.destroy
+        render json: { message: 'user deleted', status: :destroyed }
+      else
+        render json: { message: 'user not deleted' }, status: :unprocessable_entity
+      end
+    else
+      render json: { error: 'Not Allowed' }, status: :unauthorized
+    end
+  end
+
   private
 
   def user_params
