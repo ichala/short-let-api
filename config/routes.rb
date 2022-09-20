@@ -23,4 +23,6 @@ Rails.application.routes.draw do
     patch "/admin/halls", to: "halls#update_hall"
     delete "/admin/halls", to: "halls#delete_hall"
     post "/admin/halls", to: "halls#add_hall"
+    #Dashboard Stats Route
+    get "admin/stats", to: "dashboard_stats#stats"
 end
