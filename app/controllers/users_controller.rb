@@ -15,45 +15,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # Admin gets all users
-  def get_users
-    if admin?
-      @users = User.all
-      render json: @users, each_serializer: UserSerializer
-    else
-      render json: { error: 'Not Allowed' }, status: :unauthorized
-    end
-  end
-
-  # Admin can update user info i.e (first_name, last_name, email, password and role)
-  def update_user_info
-    if admin?
-      @user = User.find(update_params[:id])
-      if @user.update(update_params)
-        render json: { message: 'user updated', status: :updated }
-      else
-        render json: { message: 'reservation not created' }, status: :unprocessable_entity
-      end
-    else
-      render json: { error: 'Not Allowed' }, status: :unauthorized
-    end
-  end
-
-  # Admin can delete users except itself
-  def destroy
-    if admin?
-      @user = User.find(update_params[:id])
-      if @user == current_user
-        render json: { message: 'Can not delete current user' }, status: :unprocessable_entity
-      elsif @user.destroy
-        render json: { message: 'user deleted', status: :destroyed }
-      else
-        render json: { message: 'user not deleted' }, status: :unprocessable_entity
-      end
-    else
-      render json: { error: 'Not Allowed' }, status: :unauthorized
-    end
-  end
+  
 
   private
 
