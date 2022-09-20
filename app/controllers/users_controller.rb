@@ -15,6 +15,16 @@ class UsersController < ApplicationController
     end
   end
 
+  # Admin gets all users
+  def get_users
+    if admin?
+      @users = User.all
+      render json: @users, each_serializer: UserSerializer
+    else
+      render json: { error: 'Not Allowed' }, status: :unauthorized
+    end
+  end
+
   private
 
   def user_params
