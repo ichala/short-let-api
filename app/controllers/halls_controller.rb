@@ -11,7 +11,7 @@ class HallsController < ApplicationController
   # Delete Hall by id
   def delete_hall
     if admin?
-      hall = Hall.find(delete_params[:hall_id])
+      hall = Hall.find(params.permit(:id)[:id])
       raise ActiveRecord::RecordNotFound unless hall
 
       check_reservations(hall)
@@ -29,6 +29,17 @@ class HallsController < ApplicationController
       else
         render json: { error: 'Bad Request' }, status: :not_acceptable
       end
+    else
+      render json: { error: 'Not Allowed' }, status: :unauthorized
+    end
+  end
+
+  def edit
+    if admin?
+      hall = Hall.find(params.permit(:id)[:id])
+      raise ActiveRecord::RecordNotFound unless hall
+
+      render json: hall
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
@@ -71,15 +82,11 @@ class HallsController < ApplicationController
     end
   end
 
-  def delete_params
-    params.permit(:hall_id)
-  end
-
   def update_params
     params.permit(:hall_id, :name, :capacity, :cost, :description, :image)
   end
 
-  def create_params
+  def halls_params
     params.permit(:name, :capacity, :cost, :description, :image)
   end
 end
