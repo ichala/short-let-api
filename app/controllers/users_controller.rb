@@ -29,10 +29,10 @@ class UsersController < ApplicationController
     if admin?
       @user = User.find(update_params[:id])
       if @user.update(update_params)
-      render json: { message: 'user updated', status: :updated }
-    else
-      render json: { message: 'Email already exists' }, status: :unprocessable_entity
-    end
+        render json: { message: 'user updated', status: :updated }
+      else
+        render json: { message: 'Email already exists' }, status: :unprocessable_entity
+      end
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
