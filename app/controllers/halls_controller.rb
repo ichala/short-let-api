@@ -2,7 +2,7 @@ class HallsController < ApplicationController
   # Gett all halls
   def halls_list
     if admin?
-      render json: Hall.all, each_serializer: HallSerializer
+      render json: Hall.all.order(id: :desc), each_serializer: HallSerializer
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
