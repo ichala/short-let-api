@@ -34,21 +34,10 @@ class HallsController < ApplicationController
     end
   end
 
-  def edit
-    if admin?
-      hall = Hall.find(params.permit(:id)[:id])
-      raise ActiveRecord::RecordNotFound unless hall
-
-      render json: hall
-    else
-      render json: { error: 'Not Allowed' }, status: :unauthorized
-    end
-  end
-
   # Update existant Hall by id
   def update_hall
     if admin?
-      hall = Hall.find(params.permit(:hall_id)[:hall_id])
+      hall = Hall.find(params.permit(:id)[:id])
       raise ActiveRecord::RecordNotFound unless hall
 
       hall.update(halls_params)
