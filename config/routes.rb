@@ -12,6 +12,7 @@ Rails.application.routes.draw do
    #my reservations Routes
     get "/user/reservations", to: "reservations#my_reservations"
    #delete reservation
+    post "/reservation/check_date", to: "reservations#available_halls"
     delete "/user/reservations", to: "reservations#delete_reservation"
 
   #Admin Routes 

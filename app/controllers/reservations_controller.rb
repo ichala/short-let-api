@@ -45,6 +45,16 @@ class ReservationsController < ApplicationController
     render json: @reservations, each_serializer: ReservationSerializer, status: :ok
   end
 
+  def available_halls
+    check = Reservation.select(:hall_id).where(reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
+    unavailable = []
+    check.each { |hall| unavailable << hall.hall_id }
+    @halls = Hall.all
+    available = @halls.select {|hall| !(unavailable.include?(hall.id))}
+    render json: { available: }
+    
+  end
+
   # delete reservation
   def delete_reservation
     if logged_in?
