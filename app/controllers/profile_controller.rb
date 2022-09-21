@@ -2,9 +2,7 @@ class ProfileController < ApplicationController
   def update
     if logged_in?
       user = current_user
-      if user.update!(profile_params)
-        render json: { updated: current_user }
-      end
+      render json: { updated: current_user } if user.update!(profile_params)
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
