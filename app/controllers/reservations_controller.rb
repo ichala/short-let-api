@@ -50,9 +50,8 @@ class ReservationsController < ApplicationController
     unavailable = []
     check.each { |hall| unavailable << hall.hall_id }
     @halls = Hall.all
-    available = @halls.select {|hall| !(unavailable.include?(hall.id))}
+    available = @halls.reject { |hall| unavailable.include?(hall.id) }
     render json: { available: }
-    
   end
 
   # delete reservation
