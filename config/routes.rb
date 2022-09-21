@@ -22,7 +22,7 @@ Rails.application.routes.draw do
    #Halls C.R.U.D Routes
     get "/halls", to: "halls#halls_list"
     patch "/admin/halls", to: "halls#update_hall"
-    delete "/admin/halls", to: "halls#delete_hall"
+    delete "/admin/halls/:id", to: "halls#delete_hall"
     post "/admin/halls", to: "halls#add_hall"
     #Dashboard Stats Route
     get "admin/stats", to: "dashboard_stats#stats"

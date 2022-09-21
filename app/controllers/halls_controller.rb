@@ -2,7 +2,7 @@ class HallsController < ApplicationController
   # Gett all halls
   def halls_list
     if admin?
-      render json: Hall.all, each_serializer: HallSerializer
+      render json: Hall.all.order(id: :desc), each_serializer: HallSerializer
     else
       render json: { error: 'Not Allowed' }, status: :unauthorized
     end
@@ -11,7 +11,7 @@ class HallsController < ApplicationController
   # Delete Hall by id
   def delete_hall
     if admin?
-      hall = Hall.find(delete_params[:hall_id])
+      hall = Hall.find(params.permit(:id)[:id])
       raise ActiveRecord::RecordNotFound unless hall
 
       check_reservations(hall)
@@ -37,7 +37,7 @@ class HallsController < ApplicationController
   # Update existant Hall by id
   def update_hall
     if admin?
-      hall = Hall.find(params.permit(:hall_id)[:hall_id])
+      hall = Hall.find(params.permit(:id)[:id])
       raise ActiveRecord::RecordNotFound unless hall
 
       hall.update(halls_params)
@@ -65,10 +65,6 @@ class HallsController < ApplicationController
     else
       render json: { message: 'You Cannot Delete a Hall with a confirmed reservation' }, status: :unprocessable_entity
     end
-  end
-
-  def delete_params
-    params.permit(:hall_id)
   end
 
   def halls_params
