@@ -1,11 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'users', type: :request do
-  
   path '/signup' do
-    
     post('create user') do
-      tags "Users"
+      tags 'Users'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -21,7 +19,7 @@ RSpec.describe 'users', type: :request do
 
   path '/admin/users' do
     get('all_users user') do
-      tags "Users"
+      tags 'Users'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -37,7 +35,7 @@ RSpec.describe 'users', type: :request do
 
   path '/admin/user/update' do
     patch('update_user_info user') do
-      tags "Users"
+      tags 'Users'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
@@ -53,7 +51,7 @@ RSpec.describe 'users', type: :request do
 
   path '/admin/user/destroy' do
     delete('delete user') do
-      tags "Users"
+      tags 'Users'
       response(200, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {

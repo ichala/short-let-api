@@ -1,13 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'sessions', type: :request do
-
-  path '/login' do  
-
+  path '/login' do
     post('create session') do
-      tags "Sessions"
+      tags 'Sessions'
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -21,11 +18,9 @@ RSpec.describe 'sessions', type: :request do
   end
 
   path '/authorized' do
-
     get('show session') do
-      tags "Sessions"
+      tags 'Sessions'
       response(200, 'successful') do
-
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
