@@ -98,10 +98,10 @@ class ReservationsController < ApplicationController
     # check if hall is available for the date
     @check = Reservation.where(hall_id: reservation_params[:hall_id],
                                reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
-    if @check.blank?
+    if (@check.blank? && already_reserved.blank?)
       create_reservation
     else
-      render json: { message: 'Hall Unavailable on this date' }, status: :unprocessable_entity
+      render json: { message: 'Hall Unavailable on this date. Check if you already reserved it' }, status: :unprocessable_entity
     end
   end
 
