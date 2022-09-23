@@ -8,6 +8,10 @@ class HallsController < ApplicationController
     end
   end
 
+  def public_halls
+    render json: Hall.all.order(id: :desc), each_serializer: HallSerializer
+  end
+
   # Delete Hall by id
   def delete_hall
     if admin?
