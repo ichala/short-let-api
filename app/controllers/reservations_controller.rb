@@ -3,7 +3,7 @@ class ReservationsController < ApplicationController
   def create
     if logged_in?
       @check = Reservation.where(hall_id: reservation_params[:hall_id],
-                               reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
+                                 reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
       if @check.blank?
         user_reserved
       else
@@ -100,13 +100,13 @@ class ReservationsController < ApplicationController
     # Send Email Later
   end
 
-  #check if user already made the reservation
+  # check if user already made the reservation
   def user_reserved
     @already_reserved = Reservation.where(hall_id: reservation_params[:hall_id],
-                               reserve_date: reservation_params[:reserve_date], user_id: current_user.id)
+                                          reserve_date: reservation_params[:reserve_date], user_id: current_user.id)
     if @already_reserved.blank?
       create_reservation
-    else 
+    else
       render json: { message: 'You already made this reservation.' }, status: :unprocessable_entity
     end
   end
