@@ -10,7 +10,7 @@ class ReservationsController < ApplicationController
 
   def all_reservations
     if admin?
-      @reservations = Reservation.all.order('created_at DESC')
+      @reservations = Reservation.all.order('id DESC')
       render json: @reservations, each_serializer: ReservationSerializer, status: :ok
     else
       render json: { error: 'You are not authorized to view this page' }, status: :unauthorized
