@@ -7,6 +7,6 @@ admin.hall.create!(name:Faker::Company.name,capacity:Faker::Number.between(from:
  if user.role == 'admin'
     user.hall.create!(name:Faker::Company.name,capacity:Faker::Number.between(from: 1, to: 100),cost:Faker::Number.between(from: 1, to: 100),description:Faker::Quote.matz,image:Faker::Company.logo)
  end  
- reservation = user.reservations.create!(hall_id:1,reserve_date:Faker::Date.forward(days: 100),status:"Pending")
+ reservation = user.reservations.create!(hall_id:1,reserve_date:Faker::Date.forward(days: 100),status:"Confirmed")
  admin.notifier.create!(recipient_id:user.id,admin_id:admin,text:Faker::Quote.matz,reserve_id:reservation.id)
 end

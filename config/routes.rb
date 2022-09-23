@@ -14,6 +14,7 @@ Rails.application.routes.draw do
    #delete reservation
     post "/reservation/check_date", to: "reservations#available_halls"
     delete "/user/reservations", to: "reservations#delete_reservation"
+    patch "/profile/update", to: "profile#update"
 
   #Admin Routes 
   #All reservations
