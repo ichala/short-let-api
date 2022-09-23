@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   patch "/profile/update", to: "profile#update"
 
   #Admin Routes 
+  #All reservations
+  get "/admin/reservations", to: "reservations#all_reservations"
   #Pending Reservations Routes
   get "/admin/requests/pending", to: "reservations#pending_reservation_admin"
   patch "/admin/requests/pending", to: "reservations#handle_pending_reservation_admin"
