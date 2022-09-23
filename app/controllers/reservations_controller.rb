@@ -100,7 +100,7 @@ class ReservationsController < ApplicationController
     # Send Email Later
   end
 
-  
+  #check if user already made the reservation
   def user_reserved
     @already_reserved = Reservation.where(hall_id: reservation_params[:hall_id],
                                reserve_date: reservation_params[:reserve_date], user_id: current_user.id)
