@@ -3,7 +3,7 @@ class ReservationMailer < ApplicationMailer
     @message = message
     mail(
       to: user.email,
-      subject: "Update on your reservation!"
+      subject: 'Update on your reservation!'
     )
   end
 end
