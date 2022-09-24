@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/authorized", to: "sessions#show"
   get "/public/halls", to: "halls#public_halls"
+  get "/public/hall/:id", to: "halls#fetch_public_hall"
 
   #User Routes
     post "user/reservation", to: "reservations#create"

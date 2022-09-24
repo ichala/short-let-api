@@ -12,6 +12,14 @@ class HallsController < ApplicationController
     render json: Hall.all.order(id: :desc), each_serializer: HallSerializer
   end
 
+  def fetch_public_hall
+    hall = Hall.find(params.permit(:id)[:id])
+    raise ActiveRecord::RecordNotFound unless hall
+
+    hall.reservations = []
+    render json: hall
+  end
+
   # Delete Hall by id
   def delete_hall
     if admin?
