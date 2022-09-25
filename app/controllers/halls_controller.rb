@@ -16,7 +16,6 @@ class HallsController < ApplicationController
     hall = Hall.find(params.permit(:id)[:id])
     raise ActiveRecord::RecordNotFound unless hall
 
-    hall.reservations = []
     render json: hall
   end
 
