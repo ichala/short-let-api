@@ -36,4 +36,7 @@ Rails.application.routes.draw do
   get "/admin/users", to: "users#all_users"
   patch "/admin/user/update", to: "users#update_user_info"
   delete "/admin/user/destroy", to: "users#destroy"
+
+  #Redirect to api-docs
+  get '*path', to: redirect('/api-docs')
 end
