@@ -1,6 +1,9 @@
 require 'faker'
 
 admin = User.create!(first_name:"Admin",last_name:"Admin",role:"admin",email:"admin@admin.com",password:"admin123")
+admin = User.create!(first_name:"Admin2",last_name:"Admin2",role:"admin",email:"admin2@admin.com",password:"admin123")
+admin = User.create!(first_name:"Admin3",last_name:"Admin3",role:"admin",email:"admin3@admin.com",password:"admin123")
+admin = User.create!(first_name:"Admin4",last_name:"Admin4",role:"admin",email:"admin4@admin.com",password:"admin123")
 admin.hall.create!(name:Faker::Company.name,capacity:Faker::Number.between(from: 1, to: 100),cost:Faker::Number.between(from: 1, to: 100),description:Faker::Quote.matz,image:Faker::Company.logo)
 10.times do 
  user = User.create(first_name:Faker::Name.name,last_name:Faker::Name.name,role: %w[user admin].sample ,email:Faker::Internet.email,password:"test")
