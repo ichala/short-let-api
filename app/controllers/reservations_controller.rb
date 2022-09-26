@@ -104,9 +104,10 @@ class ReservationsController < ApplicationController
 
   # After every decision Add Notification to database & Send Email
   def create_notification(reservation)
-    current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
-                                 text: action_params[:text], reserve_id: reservation.id)
-    # Send Email Later
+    notification = current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
+                                                text: action_params[:text], reserve_id: reservation.id)
+
+    ReservationMailer.notify(notification.recipient, notification.text).deliver_now
   end
 
   # check if user already made the reservation
