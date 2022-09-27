@@ -2,9 +2,24 @@ class ReservationsController < ApplicationController
   # Create a reservation for a hall
   def create
     if logged_in?
-      check_date
+      @check = Reservation.where(hall_id: reservation_params[:hall_id],
+                                 reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
+      if @check.blank?
+        user_reserved
+      else
+        render json: { message: 'Hall Unavailable on this date.' }, status: :unprocessable_entity
+      end
     else
       render json: { error: 'Please log in to make a reservation' }, status: :unauthorized
+    end
+  end
+
+  def all_reservations
+    if admin?
+      @reservations = Reservation.all.order('id DESC')
+      render json: @reservations, each_serializer: ReservationSerializer, status: :ok
+    else
+      render json: { error: 'You are not authorized to view this page' }, status: :unauthorized
     end
   end
 
@@ -89,19 +104,20 @@ class ReservationsController < ApplicationController
 
   # After every decision Add Notification to database & Send Email
   def create_notification(reservation)
-    current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
-                                 text: action_params[:text], reserve_id: reservation.id)
-    # Send Email Later
+    notification = current_user.notifier.create(recipient_id: reservation.user_id, admin_id: current_user.id,
+                                                text: action_params[:text], reserve_id: reservation.id)
+
+    ReservationMailer.notify(notification.recipient, notification.text).deliver_now
   end
 
-  def check_date
-    # check if hall is available for the date
-    @check = Reservation.where(hall_id: reservation_params[:hall_id],
-                               reserve_date: reservation_params[:reserve_date], status: 'Confirmed')
-    if @check.blank?
+  # check if user already made the reservation
+  def user_reserved
+    @already_reserved = Reservation.where(hall_id: reservation_params[:hall_id],
+                                          reserve_date: reservation_params[:reserve_date], user_id: current_user.id)
+    if @already_reserved.blank?
       create_reservation
     else
-      render json: { message: 'Hall Unavailable on this date' }, status: :unprocessable_entity
+      render json: { message: 'You already made this reservation.' }, status: :unprocessable_entity
     end
   end
 
