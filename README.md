@@ -56,6 +56,23 @@ The tests are built with `Rspec` so you can run the `rspec .` command to run all
 - Twitter: [@eidHachem1](https://twitter.com/eidHachem1)
 - LinkedIn: [Eid Hachem](https://linkedin.com/in/eid-hachem)
 
+👤 **Ali Jendoubi**
+
+- GitHub: [@iChala](https://github.com/iChala)
+- LinkedIn: [@alijendoubi](https://linkedin.com/in/alijendoubi)
+
+👤 **Lekan Jimoh**
+
+- GitHub: [@d2ndjim](https://github.com/d2ndjim)
+- Twitter: [@d2ndjim_](https://twitter.com/d2ndjim_)
+- LinkedIn: [Lekan](https://linkedin.com/in/lekanj)
+
+👤 **David Lyangenda**
+
+- GitHub: [@Lyangenda](https://github.com/LYANGEND)
+- Twitter: [@Lyangenda](https://twitter.com/david_lyangenda)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/david-lyangenda-623087151/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
