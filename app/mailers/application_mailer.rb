@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'shortletmicroverse@gmail.com'
+  default from: 'short-let@chala.dev'
   layout 'mailer'
 end
