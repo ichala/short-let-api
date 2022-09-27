@@ -7,6 +7,11 @@ This project is the backend service provider for the Short Let application, whic
 This application was built as a group project in less then 3 weeks.
 
 
+Here are the [tasks](https://github.com/ichala/short-let-api/issues/16) we planed to work on at the begining of this project.
+
+![](https://user-images.githubusercontent.com/89282221/190205252-fd7bdeee-a2f2-4bc2-add9-e8efe93b9d51.gif)
+
+
 ## Built With
 
 - Ruby on Rails
@@ -14,9 +19,9 @@ This application was built as a group project in less then 3 weeks.
 - Rspec
 - And some other open source ruby gems
 
-## Live Demo (if available)
+## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Look at the live demo](https://short-let-frontend-6ri7-p4o3nd9pb-ichala.vercel.app)
 
 
 ## Getting Started
