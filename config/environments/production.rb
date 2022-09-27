@@ -58,15 +58,12 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  address:              'smtp.gmail.com',
-  port:                 587,
-  domain:               ENV["MAIL_DOMAIN"],
-  user_name:            ENV["MAIL_USER"],
-  password:             ENV["MAIL_PWD"],
-  authentication:       'plain',
-  enable_starttls_auto: true,
-  open_timeout:         5,
-  read_timeout:         5 }
+  address:'smtp.gmail.com',
+  port:587,
+  user_name:ENV["MAIL_USER"],
+  password:ENV["MAIL_PWD"],
+  authentication:'plain',
+  enable_starttls_auto: true}
   # Eager load code on boot. This
 
   # Ignore bad email addresses and do not raise email delivery errors.
