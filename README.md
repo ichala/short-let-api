@@ -2,9 +2,9 @@
 
 # Short Let API
 
-> This project is the backend service provider for the Short Let application, which helps the frontend to register, and login using JWT. It also provides many API endpoints to read, write, update, and delete data from all parts of the project. We built a simple and useful documentation for this project so the community can have an idea how to use with this.
+This project is the backend service provider for the Short Let application, which helps the frontend to register, and login using JWT. It also provides many API endpoints to read, write, update, and delete data from all parts of the project. We built a simple and useful documentation for this project so the community can have an idea how to use with this.
 
-> This application was built as a group project in less then 3 weeks.
+This application was built as a group project in less then 3 weeks.
 
 
 ## Built With
@@ -22,6 +22,8 @@
 ## Getting Started
 Make sure you installed Ruby and PostgresSQL in your machine. Please follow the setup steps in order.
 
+To get a local copy and up and running follow these simple example steps.
+
 1. Open your favorite command line tool, and run the bellow commands.
 2. Run `git clone git@github.com:ichala/short-let-api.git`
 3. Run `cd short-let-api`
@@ -33,35 +35,26 @@ Make sure you installed Ruby and PostgresSQL in your machine. Please follow the 
 9. Run `rails db:migrate`
 
 
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
 ### Usage
 
 ### Run tests
 
-### Deployment
-
+The tests are built with `Rspec` so you can run the `rspec .` command to run all of the tests.
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Aimal Amiri**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@aimalamiri](https://github.com/aimalamiri)
+- Twitter: [@meaimal](https://twitter.com/meaimal)
+- LinkedIn: [aimalamiri](https://linkedin.com/in/aimalamiri)
 
-👤 **Author2**
+👤 **Eid Hachem**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@EidHachem](https://github.com/EidHachem)
+- Twitter: [@eidHachem1](https://twitter.com/eidHachem1)
+- LinkedIn: [Eid Hachem](https://linkedin.com/in/eid-hachem)
 
 ## 🤝 Contributing
 
