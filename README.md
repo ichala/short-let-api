@@ -2,7 +2,7 @@
 
 # Short Let API
 
-This project is the backend service provider for the Short Let application, which helps the frontend to register, and login using JWT. It also provides many API endpoints to read, write, update, and delete data from all parts of the project. We built a simple and useful documentation for this project so the community can have an idea how to use with this.
+This project is the backend service provider for the Short Let application, which helps the frontend to register, and login using JWT. It also provides many API endpoints to read, write, update, and delete data from all parts of the project. We built a simple and useful documentation for this project so the community can have an idea how to use this.
 
 > Here is a link to the [frontend application](https://github.com/ichala/short-let-frontend) repository.
 
