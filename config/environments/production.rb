@@ -56,6 +56,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "short_let_api_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               ENV["MAIL_DOMAIN"],
+  user_name:            ENV["MAIL_USER"],
+  password:             ENV["MAIL_PWD"],
+  authentication:       'plain',
+  enable_starttls_auto: true,
+  open_timeout:         5,
+  read_timeout:         5 }
+  # Eager load code on boot. This
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
