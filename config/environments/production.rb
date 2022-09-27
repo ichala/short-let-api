@@ -59,10 +59,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
   address:'mail.chala.dev',
-  port:465,
+  port:'465',
+  tls: true,
   user_name:ENV["MAIL_USER"],
   password:ENV["MAIL_PWD"],
-  authentication:'plain',
+  authentication: :plain,
   enable_starttls_auto: true}
   # Eager load code on boot. This
 
