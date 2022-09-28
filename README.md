@@ -34,6 +34,7 @@ To get a local copy and up and running follow these simple example steps.
 1. Open your favorite command line tool, and run the bellow commands.
 2. Run `git clone git@github.com:ichala/short-let-api.git`
 3. Run `cd short-let-api`
+3. Run `bundle install`
 4. Run `cp .env.example .env`
 5. Update the `.env` file with proper database credentials
 6. Run `openssl rand -base64 32`
@@ -98,5 +99,5 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./LICENSE) licensed.
+This project is [MIT](./MIT.md) licensed.
 
