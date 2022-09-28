@@ -1,0 +1,146 @@
+---
+openapi: 3.0.1
+info:
+  title: SHORT LET API
+  version: v1
+paths:
+  "/admin/stats":
+    get:
+      summary: stats dashboard_stat
+      tags:
+      - Dashboard
+      responses:
+        '200':
+          description: successful
+  "/halls":
+    get:
+      summary: halls_list hall
+      tags:
+      - Halls
+      responses:
+        '200':
+          description: successful
+  "/admin/halls":
+    patch:
+      summary: update_hall hall
+      tags:
+      - Halls
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: add_hall hall
+      tags:
+      - Halls
+      responses:
+        '200':
+          description: successful
+  "/admin/halls/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete_hall hall
+      tags:
+      - Halls
+      responses:
+        '200':
+          description: successful
+  "/user/reservation":
+    post:
+      summary: create reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+  "/user/reservations":
+    get:
+      summary: my_reservations reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete_reservation reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+  "/reservation/check_date":
+    post:
+      summary: available_halls reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+  "/admin/requests/pending":
+    get:
+      summary: pending_reservation_admin reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+    patch:
+      summary: handle_pending_reservation_admin reservation
+      tags:
+      - Reservations
+      responses:
+        '200':
+          description: successful
+  "/login":
+    post:
+      summary: create session
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: successful
+  "/authorized":
+    get:
+      summary: show session
+      tags:
+      - Sessions
+      responses:
+        '200':
+          description: successful
+  "/signup":
+    post:
+      summary: create user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/admin/users":
+    get:
+      summary: all_users user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/admin/user/update":
+    patch:
+      summary: update_user_info user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
+  "/admin/user/destroy":
+    delete:
+      summary: delete user
+      tags:
+      - Users
+      responses:
+        '200':
+          description: successful
