@@ -4,7 +4,7 @@ RSpec.describe 'reservations', type: :request do
   path '/user/reservation' do
     post('create reservation') do
       tags 'Reservations'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,7 +20,7 @@ RSpec.describe 'reservations', type: :request do
   path '/user/reservations' do
     get('my_reservations reservation') do
       tags 'Reservations'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -34,7 +34,7 @@ RSpec.describe 'reservations', type: :request do
 
     delete('delete_reservation reservation') do
       tags 'Reservations'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -66,7 +66,7 @@ RSpec.describe 'reservations', type: :request do
   path '/admin/requests/pending' do
     get('pending_reservation_admin reservation') do
       tags 'Reservations'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -80,7 +80,7 @@ RSpec.describe 'reservations', type: :request do
 
     patch('handle_pending_reservation_admin reservation') do
       tags 'Reservations'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {

@@ -4,7 +4,7 @@ RSpec.describe 'halls', type: :request do
   path '/halls' do
     get('halls_list hall') do
       tags 'Halls'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -20,7 +20,7 @@ RSpec.describe 'halls', type: :request do
   path '/admin/halls' do
     patch('update_hall hall') do
       tags 'Halls'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -34,7 +34,7 @@ RSpec.describe 'halls', type: :request do
 
     post('add_hall hall') do
       tags 'Halls'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
@@ -53,7 +53,7 @@ RSpec.describe 'halls', type: :request do
 
     delete('delete_hall hall') do
       tags 'Halls'
-      response(200, 'successful') do
+      response(401, 'successful') do
         let(:id) { '123' }
 
         after do |example|

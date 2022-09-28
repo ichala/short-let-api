@@ -4,7 +4,7 @@ RSpec.describe 'sessions', type: :request do
   path '/login' do
     post('create session') do
       tags 'Sessions'
-      response(200, 'successful') do
+      response(401, 'successful') do
         after do |example|
           example.metadata[:response][:content] = {
             'application/json' => {
