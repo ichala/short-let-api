@@ -8,6 +8,7 @@ This project is the backend service provider for the Short Let application, whic
 
 This application was built as a group project in less then 3 weeks.
 
+## Kanban board
 
 Here is the [Kanban Board](https://github.com/ichala/short-let-api/issues/16) we planed to work on at the begining of this project.
 
