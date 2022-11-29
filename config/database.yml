@@ -18,11 +18,12 @@ default: &default
   adapter: postgresql
   encoding: unicode
   username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["DB_PASSWORD"] %>
+  password: <%= ENV["PGPASSWORD"] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  port: 5849
+  host: containers-us-west-126.railway.app
 development:
   <<: *default
   database: short_let_api_development
