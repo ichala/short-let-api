@@ -17,13 +17,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV["DB_USERNAME"] %>
-  password: <%= ENV["PGPASSWORD"] %>
+  username: <%= Figaro.env.db_username %>
+  password: <%= Figaro.env.db_password %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  port: 5849
-  host: containers-us-west-126.railway.app
+  # port: 5849
+  # host: containers-us-west-126.railway.app
 development:
   <<: *default
   database: short_let_api_development

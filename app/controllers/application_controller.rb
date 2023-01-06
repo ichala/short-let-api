@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::API
   def jwt_key
-    ENV.fetch('JWT_KEY')
+    Figaro.env.jwt_key
   end
 
   def issue_token(user)
